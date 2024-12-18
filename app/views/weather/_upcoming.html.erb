@@ -1,0 +1,11 @@
+Upcoming
+<% while @forecast[:daily][:time].present? %>
+<% day =  @forecast[:daily][:time].shift.to_date.strftime("%a") %>
+<%= day %>
+<% max =  @forecast[:daily][:temperature_2m_max].shift %>
+<%= max %>
+<% min =  @forecast[:daily][:temperature_2m_min].shift %>
+<%= min %>
+<% wmo =  @forecast[:daily][:weather_code].shift %>
+<%= wmo %>
+<% end %>

@@ -1,0 +1,13 @@
+<h1>Forecast</h1>
+
+<%= form_with(method: 'get', local: true) do %>
+    <%= text_field_tag(:address, @address, placeholder: "address") %>
+    <%= submit_tag("Lookup") %>
+<% end %>
+
+<% if @forecast.present? %>
+  <div id="forecast">
+    <%= render "current" %>
+    <%= render "upcoming" %>
+  </div>
+<%end%>
