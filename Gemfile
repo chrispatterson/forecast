@@ -71,3 +71,7 @@ end
 group :development do
   gem "rubocop", require: false
 end
+
+group :test do
+  gem "webmock"
+end
