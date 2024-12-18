@@ -1,11 +1,23 @@
-Upcoming
-<% while @forecast[:daily][:time].present? %>
-<% day =  @forecast[:daily][:time].shift.to_date.strftime("%a") %>
-<%= day %>
-<% max =  @forecast[:daily][:temperature_2m_max].shift %>
-<%= max %>
-<% min =  @forecast[:daily][:temperature_2m_min].shift %>
-<%= min %>
-<% wmo =  @forecast[:daily][:weather_code].shift %>
-<%= wmo %>
-<% end %>
+<div id="upcoming" class="mb-6">
+  <h2 class="text-4xl font-bold">Upcoming</h2>
+  <div class="flex">
+  <% while @forecast[:daily][:time].present? %>
+    <div class="grow">
+      <% day =  @forecast[:daily][:time].shift.to_date.strftime("%a") %>
+      <div class="text-2xl">
+        <%= day %>
+      </div>
+      <% wmo =  @forecast[:daily][:weather_code].shift %>
+      <span class="grayscale text-4xl"><%= emoji_from_wmo(@forecast[:current][:weather_code]) %></span>
+      <% max =  @forecast[:daily][:temperature_2m_max].shift %>
+      <div class="text-sm text-red-400">
+        <%= max %><%= @forecast[:daily_units][:temperature_2m_max]%>
+      </div>
+      <% min =  @forecast[:daily][:temperature_2m_min].shift %>
+      <div class="text-sm text-sky-400">
+        <%= min %><%= @forecast[:daily_units][:temperature_2m_min]%>
+      </div>
+    </div>
+  <% end %>
+  </div>
+</div>

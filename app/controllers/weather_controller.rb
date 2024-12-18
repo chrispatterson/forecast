@@ -3,25 +3,21 @@ class WeatherController < ApplicationController
     session[:address] = params[:address]
     if params[:address].present?
       begin
-        @address = params[:address]
-        @geocode = GeolookupService.call(@address)
-        # @weather_cache_key = "#{@geocode.country_code}-#{@geocode.postal_code}"
-        # @weather_cache_exist = Rails.cache.exist?(@weather_cache_key)
 
-        # @weather = Rails.cache.fetch(@weather_cache_key, expires_in: 30.minutes) do
-        #   ForecastService.call(
-          # lat: @geocode[:lat],
-          # lon: @geocode[:lon],
-          # timezone: @geocode[:timezone]
-        #   )
-        # end
+        @geocode = GeolookupService.call(params[:address])
+        @address = @geocode[:display_name]
 
-        @forecast = ForecastService.call(
-              lat: @geocode[:lat],
-              lon: @geocode[:lon],
-              country_code: @geocode[:country_code],
-              timezone: @geocode[:timezone]
-            )
+        @weather_cache_key = "#{@geocode[:country_code]}-#{@geocode[:postal_code]}"
+        @weather_cache_exists = Rails.cache.exist?(@weather_cache_key)
+
+        @forecast = Rails.cache.fetch(@weather_cache_key, expires_in: 30.minutes) do
+          ForecastService.call(
+            lat: @geocode[:lat],
+            lon: @geocode[:lon],
+            country_code: @geocode[:country_code],
+            timezone: @geocode[:timezone]
+          )
+        end
       rescue => e
         flash.alert = e.message
       end

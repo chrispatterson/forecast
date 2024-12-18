@@ -42,7 +42,7 @@
 class ForecastService
   CURRENT_PARAMS = "temperature_2m,weather_code"
   DAILY_PARAMS = "temperature_2m_max,temperature_2m_min,weather_code"
-  COUNTRIES_USING_FAHRENHEIT = ["FM", "KY", "LR", "MH", "MS", "PW", "US", "VI"]
+  COUNTRIES_USING_FAHRENHEIT = [ "FM", "KY", "LR", "MH", "MS", "PW", "US", "VI" ]
 
   def self.call(lat:, lon:, country_code: "US", timezone: "GMT")
     new(lat, lon, country_code, timezone,).call

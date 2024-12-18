@@ -1,3 +1,9 @@
-Current
-<%= @forecast[:current][:temperature_2m]%><%= @forecast[:current_units][:temperature_2m]%>
-<%= emoji_from_wmo(@forecast[:current][:weather_code]) %>
+<div id="current" class="mb-6">
+  <h2 class="text-4xl font-bold">Current</h2>
+  <div class="font-bold">
+    <%= @forecast[:current][:temperature_2m]%><%= @forecast[:current_units][:temperature_2m]%>
+  </div>
+  <div>
+    <span class="grayscale text-6xl"><%= emoji_from_wmo(@forecast[:current][:weather_code]) %></span>
+  </div>
+</div>
