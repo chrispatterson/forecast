@@ -63,6 +63,7 @@ group :test do
 end
 
 gem "faraday"
+gem "timezone_finder"
 
 group :development, :test do
   gem "rspec-rails", "~> 7.1.0"
