@@ -8,7 +8,7 @@
         <%= day %>
       </div>
       <% wmo =  @forecast[:daily][:weather_code].shift %>
-      <span class="grayscale text-4xl"><%= emoji_from_wmo(@forecast[:current][:weather_code]) %></span>
+      <span class="grayscale text-4xl"><%= emoji_from_wmo(wmo) %></span>
       <% max =  @forecast[:daily][:temperature_2m_max].shift %>
       <div class="text-sm text-red-400">
         <%= max %><%= @forecast[:daily_units][:temperature_2m_max]%>
